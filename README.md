@@ -1,71 +1,99 @@
-# Predicting Hospital Readmissions
+# Predicting Hospital Readmissions: README
 
-This project is part of a **Big Data and Data Analytics Course** and aims to address the challenge of hospital readmissions, a critical issue in healthcare management. This README provides detailed information on the problem, solution, implementation, and results of the project.
+This project is part of a **Data Analytics Course** and aims to address the issue of hospital readmissions. By employing advanced machine learning techniques, the project predicts whether a patient will require readmission within 30 days of discharge. Below is a detailed overview of the project, its implementation, and results.
 
 ---
 
 ## **Problem Statement**
 
-Hospital readmissions within 30 days of discharge are a major concern in the healthcare industry. They increase patient risk, disrupt treatment continuity, and impose significant costs on healthcare systems. Identifying patients at risk of readmission can enable timely interventions and improve patient outcomes.
+Hospital readmissions within 30 days of discharge are a pressing concern. They lead to higher costs, overburdened healthcare systems, and increased patient risks. Predicting the likelihood of readmission can help healthcare providers proactively manage high-risk patients and improve care quality.
 
 ---
 
 ## **Solution Description**
 
-This project leverages **machine learning techniques** to predict whether a patient is likely to be readmitted within 30 days of their initial discharge. The solution is designed to:
-- Analyze patient data (e.g., demographics, medical history, and test results).
-- Provide healthcare professionals with actionable insights for proactive interventions.
-- Optimize resource allocation and reduce readmission rates.
+This project develops a machine learning model to predict hospital readmissions. The solution:
+- Processes patient demographic and clinical data.
+- Provides predictions on whether readmission is required.
+- Helps healthcare providers take timely, preventive measures.
 
 ### **Key Features**
-- **Interactive Web App**: Built with Streamlit, the application allows users to input patient details and receive predictions on readmission likelihood.
-- **Customizable Inputs**: Users can specify variables such as gender, admission type, diagnosis, lab procedures, and medication counts.
-- **Accurate Predictions**: The model utilizes patient data to classify whether readmission is required or not.
+- **Comprehensive Analysis**: Utilizes patient information such as medical history, lab results, and previous visits.
+- **Interactive Web Application**: Built using Streamlit, it offers an intuitive interface for entering patient data and obtaining predictions.
+- **Actionable Insights**: Enables proactive interventions to reduce readmission rates.
 
 ---
 
 ## **Implementation Details**
 
+### **Tasks Completed**
+
 1. **Data Preprocessing**:
-   - The model was trained on healthcare datasets containing information on patient demographics, diagnoses, procedures, and previous hospital visits.
-   - Missing values were imputed, and categorical variables were encoded for machine learning compatibility.
+   - Handled outliers and skewed data distributions.
+   - Performed feature selection using heatmaps and variance inflation factor (VIF) analysis.
 
-2. **Model Training**:
-   - A supervised learning approach was used, and multiple algorithms (e.g., Logistic Regression, Random Forest, Gradient Boosting) were tested.
-   - The best-performing model was saved as a `.pkl` file for deployment.
+2. **Feature Engineering**:
+   - Developed a separate notebook for predicting A1C values to enrich the dataset.
+   - Engineered new features to enhance model performance.
 
-3. **Web Application**:
-   - The Streamlit framework is used for a user-friendly interface.
-   - Inputs are processed and passed to the trained model to generate predictions.
+3. **Model Building**:
+   - Tried various machine learning models, including:
+     - Logistic Regression
+     - Support Vector Classifier (SVC)
+     - Decision Tree Classifier
+     - Random Forest Classifier
+     - XGBoost Classifier
+   - Chose the best-performing model based on accuracy and AUC metrics.
 
+4. **Handling Imbalanced Data**:
+   - Used the **SMOTE-Tomek** method to address class imbalance in the dataset.
+
+5. **Model Evaluation**:
+   - Evaluated performance using cross-validation, confusion matrix, classification report, and AUC metrics.
 
 ---
 
 ## **Main Technologies Used**
 
 - **Programming Languages**: Python
-- **Machine Learning Techniques**:
-  - Logistic Regression
-  - Random Forest
-  - Gradient Boosting
-- **Libraries and Tools**:
-  - **Streamlit**: For creating the interactive web application.
-  - **Scikit-learn**: For model development and evaluation.
-  - **Pandas & NumPy**: For data manipulation and preprocessing.
-
+- **Libraries**:
+  - **Data Manipulation**: pandas, numpy
+  - **Visualization**: matplotlib, seaborn
+  - **Modeling and Evaluation**: scikit-learn, XGBoost, imbalanced-learn (for SMOTE-Tomek)
 
 ---
 
 ## **Results**
 
-- **Model Performance**:
-  - Achieved an accuracy of **85%** and an AUC-ROC score of **0.89** on test data.
-  - Feature importance analysis identified key predictors, such as:
-    - **Number of inpatient visits**
-    - **A1C results**
-    - **Admission type**
+### **Performance Metrics**
 
-- **Application Usability**:
-  - A streamlined interface for healthcare professionals to input patient details and receive instant predictions.
-  - Proactive identification of high-risk patients enables better care management and reduced readmission rates.
+- **Accuracy**:
+  - Train Accuracy: **89.38%**
+  - Test Accuracy: **91.00%**
+
+- **Confusion Matrix**:
+  ```
+  [[99 17]
+   [ 1 83]]
+  ```
+
+- **Classification Report**:
+  ```
+                precision    recall  f1-score   support
+
+             0       0.99      0.85      0.92       116
+             1       0.83      0.99      0.90        84
+
+      accuracy                           0.91       200
+     macro avg       0.91      0.92      0.91       200
+  weighted avg       0.92      0.91      0.91       200
+  ```
+
+- **Receiver Operating Characteristic (ROC) Curve**:
+  - False Positive Rate: `[0.0, 0.1465, 1.0]`
+  - True Positive Rate: `[0.0, 0.988, 1.0]`
+  - Thresholds: `[inf, 1.0, 0.0]`
+
+- **Area Under the Curve (AUC)**:
+  - **0.921**
 
